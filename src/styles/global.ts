@@ -6,12 +6,10 @@ export const globalStyles = globalCss({
     padding: 0,
     boxSizing: 'border-box',
   },
-  'body, input, textarea, button, Select': {
-    fontFamily: 'Inter',
-    fontWeight: 400,
-    fontSize: '1rem',
+  'body, input, textarea, button, select': {
+    fontFamily: 'Inter, sans-serif',
   },
   body: {
-    backgroundColor: '$white',
+    backgroundColor: 'white',
   },
 })
