@@ -1,6 +1,6 @@
-import { styled } from '@stitches/react'
+import { styled } from '../../styles'
 
 export const Text = styled('p', {
-  color: '#2B2B2B',
+  color: '$gray500',
   fontSize: '16px',
 })

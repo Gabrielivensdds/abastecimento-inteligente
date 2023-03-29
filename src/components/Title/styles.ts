@@ -1,7 +1,7 @@
-import { styled } from '@stitches/react'
+import { styled } from '../../styles'
 
 export const Title = styled('h1', {
-  color: '#2B2B2B',
+  color: '$gray500',
   fontSize: '36px',
   fontWeight: 'lighter',
 })

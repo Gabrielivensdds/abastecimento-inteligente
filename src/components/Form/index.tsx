@@ -1,16 +1,18 @@
 import { FormEvent, useState } from 'react'
 import { MultiSelect } from '../MultiSelect'
+import { RadioGroup } from '../RadioGroup'
+import { StyledForm } from './styles'
+import { SubTitle } from '../SubTitle'
+import { Text } from '../Text'
+import { Title } from '../Title'
+import { InputIncremental } from '../InputIncremetal'
 
 export function Form() {
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
   const [selectedOptions, setSelectedOptions] = useState<Option[]>([])
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    console.log('Nome:', name)
-    console.log('E-mail:', email)
-    console.log('Selected options:', selectedOptions)
+    console.log('Opcoes selecionadas:', selectedOptions)
   }
 
   const options = [
@@ -21,26 +23,32 @@ export function Form() {
     { value: '5347', label: '5347' },
   ]
 
+  const optionsModAB = [
+    { value: 'pace', label: 'Pace' },
+    { value: 'vagas', label: 'Vagas' },
+  ]
+
+  const optionsFormCar = [
+    { value: 'CalcVol', label: 'Cálculo por Volume' },
+    { value: 'LoadMed', label: 'Load médio de peças' },
+  ]
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name">Nome:</label>
-      <input
-        type="text"
-        id="name"
-        value={name}
-        onChange={(event) => setName(event.target.value)}
-      />
+    <div>
+      <Title text="Parametrização e Simulação - ABI" />
+      <SubTitle text="Nessa parte do processo será requisitado todas as métricas necessárias para o cálculo do robô." />
 
-      <label htmlFor="email">E-mail:</label>
-      <input
-        type="email"
-        id="email"
-        value={email}
-        onChange={(event) => setEmail(event.target.value)}
-      />
-      <MultiSelect options={options} onChange={setSelectedOptions} />
+      <StyledForm onSubmit={handleSubmit}>
+        <Text text="MODO DE ABASTECIMENTO" />
+        <RadioGroup options={optionsModAB} />
+        <Text text="FORMAÇÃO DE CARROS" />
+        <RadioGroup options={optionsFormCar} />
+        <Text text="LEAD TIME WHP" />
+        <InputIncremental />
+        <MultiSelect options={options} onChange={setSelectedOptions} />
 
-      <button type="submit">Enviar</button>
-    </form>
+        <button type="submit">Enviar</button>
+      </StyledForm>
+    </div>
   )
 }

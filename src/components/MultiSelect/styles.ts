@@ -12,6 +12,7 @@ export const colorStyles: StylesConfig<ColourOption, true> = {
     ...styles,
     backgroundColor: 'white',
     borderRadius: '4px',
+    height: '2.875rem',
     margin: '0.875rem',
   }),
   multiValue: (styles) => {
