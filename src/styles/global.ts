@@ -10,6 +10,6 @@ export const globalStyles = globalCss({
     fontFamily: 'Inter, sans-serif',
   },
   body: {
-    backgroundColor: 'white',
+    backgroundColor: '$white',
   },
 })

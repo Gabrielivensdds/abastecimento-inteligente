@@ -6,9 +6,12 @@ import { SubTitle } from '../SubTitle'
 import { Text } from '../Text'
 import { Title } from '../Title'
 import { InputIncremental } from '../InputIncremetal'
+import { Button } from '../Button'
+import { PlayCircle } from '@phosphor-icons/react'
+import { CheckBox } from '../Checkbox'
 
 export function Form() {
-  const [selectedOptions, setSelectedOptions] = useState<Option[]>([])
+  const [selectedOptions, setSelectedOptions] = useState<(typeof Option)[]>([])
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -46,8 +49,12 @@ export function Form() {
         <Text text="LEAD TIME WHP" />
         <InputIncremental />
         <MultiSelect options={options} onChange={setSelectedOptions} />
+        <CheckBox>Reservas consideradas Full</CheckBox>
 
-        <button type="submit">Enviar</button>
+        <Button>
+          <PlayCircle size={22} />
+          <span>Enviar</span>
+        </Button>
       </StyledForm>
     </div>
   )

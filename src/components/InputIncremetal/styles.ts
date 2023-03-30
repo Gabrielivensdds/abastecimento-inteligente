@@ -9,7 +9,7 @@ export const Input = styled('input', {
   paddingRight: '25px',
   backgroundColor: 'white',
   border: '1px solid $gray100',
-  boxShadow: `0 0 0 1px #989797`,
+  boxShadow: `0 0 0 0.5px #989797`,
   '&:focus': {
     outline: 'none',
     borderColor: '$lightblue',
@@ -31,7 +31,7 @@ export const DecrementButton = styled('button', {
   border: '1px solid $gray100',
   borderTopLeftRadius: '2px',
   borderBottomLeftRadius: '2px',
-  boxShadow: `0 0 0 1px #989797`,
+  boxShadow: `0 0 0 0.5px #989797`,
   cursor: 'pointer',
   '&:hover': {
     backgroundColor: '$gray200',
@@ -59,7 +59,7 @@ export const IncrementButton = styled('button', {
   border: '1px solid $gray100',
   borderTopRightRadius: '2px',
   borderBottomRightRadius: '2px',
-  boxShadow: `0 0 0 1px #989797`,
+  boxShadow: `0 0 0 0.5px #989797`,
   cursor: 'pointer',
   '&:hover': {
     backgroundColor: '$gray200',

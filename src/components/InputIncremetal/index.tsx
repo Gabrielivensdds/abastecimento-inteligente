@@ -20,7 +20,7 @@ export function InputIncremental() {
       <Input
         type="number"
         value={value}
-        onChange={(e) => setValue(e.target.value)}
+        onChange={(e) => setValue(Number(e.target.value))}
       />
       <IncrementButton onClick={handleIncrement} />
     </Container>
