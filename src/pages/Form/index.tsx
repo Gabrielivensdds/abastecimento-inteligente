@@ -49,8 +49,11 @@ export function FormPage() {
   return (
     <StyledForm onSubmit={handleSubmit}>
       <TitleFormConteiner>
-        <Title text="Parametrização e Simulação - ABI" />
-        <SubTitle text="Nessa parte do processo será requisitado todas as métricas necessárias para o cálculo do robô." />
+        <Title>Parametrização e Simulação - ABI</Title>
+        <SubTitle>
+          Nessa parte do processo será requisitado todas as métricas necessárias
+          para o cálculo do robô.
+        </SubTitle>
       </TitleFormConteiner>
       <LineFormConteiner>
         <ItemFormConteiner>

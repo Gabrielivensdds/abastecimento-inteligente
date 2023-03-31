@@ -48,7 +48,7 @@ export const Sidebar = () => {
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/" collapsed={isCollapsed}>
+          <StyledNavLink to="/Sheets" collapsed={isCollapsed}>
             <MicrosoftExcelLogo size={22} />
             {!isCollapsed && <span>Entradas Manuais</span>}
           </StyledNavLink>
@@ -60,7 +60,7 @@ export const Sidebar = () => {
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/" collapsed={isCollapsed}>
+          <StyledNavLink to="/Results" collapsed={isCollapsed}>
             <ChartLineUp size={22} />
             {!isCollapsed && <span>Resultados</span>}
           </StyledNavLink>

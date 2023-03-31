@@ -1,9 +1,12 @@
-import React from 'react'
+import { CSS } from '@stitches/react'
+import { ReactNode } from 'react'
+import { StyledSubTitle } from './styles'
 
 interface SubTitleProps {
-  text: string
+  children: ReactNode
+  css?: CSS
 }
 
-export const SubTitle: React.FC<SubTitleProps> = ({ text }) => {
-  return <h4>{text}</h4>
+export const SubTitle = ({ children, css }: SubTitleProps) => {
+  return <StyledSubTitle css={css}>{children}</StyledSubTitle>
 }

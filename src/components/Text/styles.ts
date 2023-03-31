@@ -1,6 +1,6 @@
 import { styled } from '../../styles'
 
-export const Text = styled('p', {
+export const StyledText = styled('p', {
   color: '$gray500',
   fontSize: '16px',
 })
