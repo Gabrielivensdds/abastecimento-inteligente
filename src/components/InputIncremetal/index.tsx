@@ -16,13 +16,13 @@ export function InputIncremental() {
 
   return (
     <Container>
-      <DecrementButton onClick={handleDecrement} />
+      <DecrementButton type="button" onClick={handleDecrement} />
       <Input
         type="number"
         value={value}
         onChange={(e) => setValue(Number(e.target.value))}
       />
-      <IncrementButton onClick={handleIncrement} />
+      <IncrementButton type="button" onClick={handleIncrement} />
     </Container>
   )
 }

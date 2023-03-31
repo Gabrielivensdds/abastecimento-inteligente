@@ -1,12 +1,13 @@
-import { Form } from './components/Form'
+import { Router } from './Router'
+import { BrowserRouter } from 'react-router-dom'
 import { globalStyles } from './styles/global'
 
 globalStyles()
 
 export function App() {
   return (
-    <div className="App">
-      <Form />
-    </div>
+    <BrowserRouter>
+      <Router />
+    </BrowserRouter>
   )
 }

@@ -1,7 +1,6 @@
 import { styled } from '../../styles'
 
 export const Input = styled('input', {
-  width: '15rem',
   height: '2.875rem',
   textAlign: 'center',
   margin: '0',

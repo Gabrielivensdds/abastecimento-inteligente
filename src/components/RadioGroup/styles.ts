@@ -12,13 +12,13 @@ export const RadioGroupItem = styled(RadioGroup.Item, {
   justifyContent: 'center',
   alignItems: 'center',
   all: 'unset',
-  backgroundColor: '$yellow',
+  backgroundColor: '$yellow600',
   width: 20,
   height: 20,
   borderRadius: '100%',
   boxShadow: `0 0 0 2px #989797`,
   '&:focus': {
-    boxShadow: `0 0 0 2px #D3AB3C`,
+    boxShadow: `0 0 0 2px yellow600`,
   },
 })
 

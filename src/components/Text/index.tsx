@@ -1,9 +1,9 @@
-import React from 'react'
+import { ReactNode } from 'react'
 
 interface TextProps {
-  text: string
+  children: ReactNode
 }
 
-export const Text: React.FC<TextProps> = ({ text }) => {
-  return <p>{text}</p>
+export const Text = ({ children }: TextProps) => {
+  return <p>{children}</p>
 }
