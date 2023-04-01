@@ -5,7 +5,7 @@ import { CSS } from '@stitches/react'
 
 interface ButtonProps {
   children: ReactNode
-  css: CSS
+  css?: CSS
 }
 
 export const Button = ({ children, css }: ButtonProps) => (

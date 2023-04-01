@@ -8,7 +8,7 @@ export const ContainerSidebar = styled('div', {
   height: '100vh',
   backgroundColor: '$blue500',
   color: '$white',
-
+  position: 'fixed',
   variants: {
     collapsed: {
       true: {
