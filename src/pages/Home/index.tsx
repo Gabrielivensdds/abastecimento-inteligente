@@ -1,4 +1,3 @@
-import { PlayCircle } from '@phosphor-icons/react'
 import { ButtonLink } from '../../components/ButtonLink'
 import {
   ItemFormConteiner,
@@ -15,7 +14,9 @@ import ViaVarejo from '../../assets/img/ViaVarejo.svg'
 import TaQi from '../../assets/img/TaQi.svg'
 import Gazin from '../../assets/img/Gazin.svg'
 import NovoMundo from '../../assets/img/NovoMundo.svg'
+import foto from '../../assets/fototeste.png'
 import { Text } from '../../components/Text'
+import { Card } from '../../components/Card'
 
 export function Home() {
   return (
@@ -63,6 +64,22 @@ export function Home() {
         <img src={TaQi} alt="" />
         <img src={Gazin} alt="" />
         <img src={NovoMundo} alt="" />
+      </LineFormConteiner>
+      <TitleFormConteiner css={{ marginTop: '50px' }}>
+        <SubTitle css={{ fontSize: '30px' }}>
+          Equipe de Desenvolvimento
+        </SubTitle>
+        <Text>
+          Nossa equipe de desenvolvimento é formado por dois setores, que são
+          eles Business e Technical:
+        </Text>
+        <SubTitle css={{ fontSize: '24px' }}>Business:</SubTitle>
+      </TitleFormConteiner>
+      <LineFormConteiner>
+        <Card pictureSrc={foto} name="John Freyts" job="Frontend Developer" />
+        <Card pictureSrc={foto} name="Joao Freitas" job="Frontend Developer" />
+        <Card pictureSrc={foto} name="John Doe" job="Frontend Developer" />
+        <Card pictureSrc={foto} name="John Doe" job="Frontend Developer" />
       </LineFormConteiner>
     </StyledFlex>
   )
