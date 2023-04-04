@@ -10,20 +10,21 @@ import {
 import { CheckCircle, Warning, XCircle } from '@phosphor-icons/react'
 import Select from 'react-select/creatable'
 
-interface PipelineStatus {
-  id: number
-  pipelineId: string
-  status: string
-}
-
-interface CardStatusProps {
-  pipelineStatusList: PipelineStatus[]
-}
-
 const iconStatus = {
   success: <CheckCircle size={20} weight="fill" color="green" />,
   error: <XCircle size={20} weight="fill" color="red" />,
   warning: <Warning size={20} weight="fill" color="#D3AB3C" />,
+}
+type IconStatus = keyof typeof iconStatus
+
+interface PipelineStatus {
+  id: number
+  pipelineId: string
+  status: IconStatus
+}
+
+interface CardStatusProps {
+  pipelineStatusList: PipelineStatus[]
 }
 
 export default function CardStatusList({
@@ -64,7 +65,6 @@ export function CardStatus({
         <Status>
           Status:
           {iconStatus[status]}
-          {/* <CheckCircle size={20} weight="fill" color="#D3AB3C" /> */}
         </Status>
         <StyledButton css={{ alignSelf: 'end' }} onClick={handleExpand}>
           Resultados

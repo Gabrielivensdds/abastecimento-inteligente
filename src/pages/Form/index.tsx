@@ -1,4 +1,6 @@
 import { useForm, Controller } from 'react-hook-form'
+import * as zod from 'zod'
+import { zodResolver } from '@hookform/resolvers/zod'
 import { MultiSelect } from '../../components/MultiSelect'
 import { RadioGroup } from '../../components/RadioGroup'
 import { SubTitle } from '../../components/SubTitle'
@@ -8,8 +10,10 @@ import { InputIncremental } from '../../components/InputIncremetal'
 import { Button } from '../../components/Button'
 import { PlayCircle } from '@phosphor-icons/react'
 import { CheckBox } from '../../components/Checkbox'
+
 import {
   ItemFormConteiner,
+  Label,
   LineFormConteiner,
   StyledForm,
   TitleFormConteiner,
@@ -43,13 +47,41 @@ export function FormPage() {
     console.log(data)
   }
 
-  const { register, handleSubmit, control } = useForm({
+  const ParamESimFormValidationSchema = zod.object({
+    RGModAbast: zod.string(),
+    RGFormCar: zod.string(),
+    RGLoadMed: zod.string().min(1).max(3),
+    RGTpMdDoh: zod.string(),
+    LeadTimeWp: zod.string().min(1).max(3),
+    DivOrdPac: zod.string().min(1).max(3),
+    SobraMin: zod.string().min(1).max(3),
+    PostDias: zod.string().min(1).max(3),
+    ClientAgrup: zod
+      .array(
+        zod.object({
+          value: zod.string(),
+          label: zod.string(),
+        }),
+      )
+      .min(1, 'Selecione um cliente Agrupador'),
+    CheckBox: zod.boolean(),
+  })
+  const { handleSubmit, control, formState } = useForm({
     defaultValues: {
       RGModAbast: optionsModAB[0].value,
       RGFormCar: optionsFormCar[0].value,
       RGLoadMed: '0',
+      RGTpMdDoh: optionsTpMed[0].value,
+      LeadTimeWp: '0',
+      DivOrdPac: '0',
+      SobraMin: '0',
+      PostDias: '0',
+      ClientAgrup: [],
+      CheckBox: false,
     },
+    resolver: zodResolver(ParamESimFormValidationSchema),
   })
+  console.log(formState.errors)
 
   return (
     <StyledForm onSubmit={handleSubmit(handleCreateSimulation)}>
@@ -96,34 +128,81 @@ export function FormPage() {
       <LineFormConteiner>
         <ItemFormConteiner>
           <Text>TIPO DE MÉDIA DOH</Text>
-          <RadioGroup options={optionsTpMed} {...register('TpMdDoh')} />
+          <Controller
+            name="RGTpMdDoh"
+            control={control}
+            render={({ field }) => (
+              <RadioGroup options={optionsTpMed} onChange={field.onChange} />
+            )}
+          />
         </ItemFormConteiner>
       </LineFormConteiner>
       <LineFormConteiner>
         <ItemFormConteiner>
           <Text>LEAD TIME WHP</Text>
-          <InputIncremental {...register('LeadTimeWp')} />
+          <Controller
+            name="LeadTimeWp"
+            control={control}
+            render={({ field }) => (
+              <InputIncremental onValueChange={field.onChange} />
+            )}
+          />
         </ItemFormConteiner>
         <ItemFormConteiner>
           <Text>DIVISÃO DE ORDENS EM PACOTES DE</Text>
-          <InputIncremental {...register('DivOrdPac')} />
+          <Controller
+            name="DivOrdPac"
+            control={control}
+            render={({ field }) => (
+              <InputIncremental onValueChange={field.onChange} />
+            )}
+          />
         </ItemFormConteiner>
       </LineFormConteiner>
       <LineFormConteiner>
         <ItemFormConteiner>
           <Text>MÍNIMO DE SOBRAS P/ INFORMAR PIVO</Text>
-          <InputIncremental {...register('SobraMin')} />
+          <Controller
+            name="SobraMin"
+            control={control}
+            render={({ field }) => (
+              <InputIncremental onValueChange={field.onChange} />
+            )}
+          />
         </ItemFormConteiner>
         <ItemFormConteiner>
           <Text>DIAS PARA POSTERGAR</Text>
-          <InputIncremental {...register('PostDias')} />
+          <Controller
+            name="PostDias"
+            control={control}
+            render={({ field }) => (
+              <InputIncremental onValueChange={field.onChange} />
+            )}
+          />
         </ItemFormConteiner>
       </LineFormConteiner>
       <LineFormConteiner>
         <ItemFormConteiner>
           <Text>CLIENTE AGRUPADOR</Text>
-          <MultiSelect options={options} {...register('ClientAgrup')} />
-          <CheckBox>Reservas consideradas Full</CheckBox>
+          <Controller
+            name="ClientAgrup"
+            control={control}
+            render={({ field }) => (
+              <MultiSelect options={options} onChange={field.onChange} />
+            )}
+          />
+        </ItemFormConteiner>
+      </LineFormConteiner>
+      <LineFormConteiner>
+        <ItemFormConteiner css={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Controller
+            name="CheckBox"
+            control={control}
+            render={({ field }) => (
+              <CheckBox id="d1" onValueChange={field.onChange} />
+            )}
+          />
+          <Label htmlFor="d1">Reservas Consideradas Full</Label>
         </ItemFormConteiner>
       </LineFormConteiner>
       <Button css={{ alignSelf: 'end' }}>

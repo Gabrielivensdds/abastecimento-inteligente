@@ -32,3 +32,12 @@ export const TitleFormConteiner = styled('div', {
   flexDirection: 'column',
   gap: '24px',
 })
+
+export const Label = styled('label', {
+  color: '$gray500',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  fontSize: 14,
+  paddingLeft: 15,
+})

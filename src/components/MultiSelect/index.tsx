@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Select from 'react-select'
+import Select, { MultiValue } from 'react-select'
 import { colorStyles } from './styles'
 
 interface Option {
@@ -9,16 +9,16 @@ interface Option {
 
 interface MultiSelectProps {
   options: Option[]
-  onChange?: (selectedOptions: Option[]) => void
+  onChange?: (selectedOptions: MultiValue<Option>) => void
 }
 
 export function MultiSelect({ options, onChange }: MultiSelectProps) {
-  const [selectedOptions, setSelectedOptions] = useState<Option[]>([])
+  const [selectedOptions, setSelectedOptions] = useState<MultiValue<Option>>([])
 
-  const handleSelectChange = (selectedOptions: Option[]) => {
-    setSelectedOptions(selectedOptions)
+  const handleSelectChange = (newValue: MultiValue<Option>) => {
+    setSelectedOptions(newValue)
     if (onChange) {
-      onChange(selectedOptions)
+      onChange(newValue)
     }
   }
 

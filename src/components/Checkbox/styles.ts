@@ -21,14 +21,3 @@ export const CheckboxRoot = styled(Checkbox.Root, {
 export const CheckboxIndicator = styled(Checkbox.Indicator, {
   color: '$white',
 })
-
-export const Label = styled('label', {
-  color: '$gray500',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  fontSize: 14,
-  paddingLeft: 15,
-})
-
-export const Flex = styled('div', { display: 'flex' })
