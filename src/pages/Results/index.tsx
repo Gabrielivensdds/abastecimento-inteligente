@@ -1,12 +1,33 @@
 import { ArrowCounterClockwise } from '@phosphor-icons/react'
 import { Button } from '../../components/Button'
 import { SubTitle } from '../../components/SubTitle'
-import { LineFormConteiner, StyledForm, TitleFormConteiner } from './styles'
+import {
+  LineFormConteiner,
+  Container,
+  TitleFormConteiner,
+  GripConteiner,
+} from './styles'
 import { Title } from '../../components/Title'
+import CardStatusList from '../../components/CardStatus'
 
 export function Results() {
+  const pipelineStatusData = [
+    { id: 1, pipelineId: 'P001', status: 'success' },
+    { id: 2, pipelineId: 'P002', status: 'error' },
+    { id: 3, pipelineId: 'P003', status: 'warning' },
+    { id: 1, pipelineId: 'P001', status: 'success' },
+    { id: 2, pipelineId: 'P002', status: 'error' },
+    { id: 3, pipelineId: 'P003', status: 'warning' },
+    { id: 1, pipelineId: 'P001', status: 'success' },
+    { id: 2, pipelineId: 'P002', status: 'error' },
+    { id: 3, pipelineId: 'P003', status: 'warning' },
+    { id: 1, pipelineId: 'P001', status: 'success' },
+    { id: 2, pipelineId: 'P002', status: 'error' },
+    { id: 3, pipelineId: 'P003', status: 'warning' },
+  ]
+
   return (
-    <StyledForm>
+    <Container>
       <TitleFormConteiner>
         <LineFormConteiner>
           <Title>Resultados</Title>
@@ -19,7 +40,10 @@ export function Results() {
           Aqui você pode acompanhar os resultados que o robô trouxe dos
           cálculos.
         </SubTitle>
+        <GripConteiner>
+          <CardStatusList pipelineStatusList={pipelineStatusData} />
+        </GripConteiner>
       </TitleFormConteiner>
-    </StyledForm>
+    </Container>
   )
 }

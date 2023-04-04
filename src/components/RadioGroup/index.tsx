@@ -13,6 +13,7 @@ interface Option {
 
 interface RadioGroupProps {
   options: Option[]
+  onChange: (selectedOptions: string) => string
 }
 
 export function RadioGroup({ options }: RadioGroupProps) {

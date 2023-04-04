@@ -1,4 +1,5 @@
 import { FormEvent, useState } from 'react'
+import { useForm, Controller } from 'react-hook-form'
 import { MultiSelect } from '../../components/MultiSelect'
 import { RadioGroup } from '../../components/RadioGroup'
 import { SubTitle } from '../../components/SubTitle'
@@ -18,10 +19,13 @@ import {
 export function FormPage() {
   const [selectedOptions, setSelectedOptions] = useState<(typeof Option)[]>([])
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleCreateSimulation = (data: any) => {
+    console.log(data)
     event.preventDefault()
     console.log('Opcoes selecionadas:', selectedOptions)
   }
+
+  const { register, handleSubmit, control } = useForm()
 
   const options = [
     { value: '1054', label: '1054' },
@@ -46,8 +50,22 @@ export function FormPage() {
     { value: 'fixo', label: 'Fixo' },
   ]
 
+  function handleChange(value: string) {
+    return value
+  }
   return (
-    <StyledForm onSubmit={handleSubmit}>
+    <StyledForm onSubmit={handleSubmit(handleCreateSimulation)}>
+      <Controller
+        name="xxxxxx"
+        control={control}
+        render={({ field }) => (
+          <RadioGroup
+            options={optionsModAB}
+            {...field}
+            onChange={handleChange}
+          />
+        )}
+      />
       <TitleFormConteiner>
         <Title>Parametrização e Simulação - ABI</Title>
         <SubTitle>
@@ -58,47 +76,48 @@ export function FormPage() {
       <LineFormConteiner>
         <ItemFormConteiner>
           <Text>MODO DE ABASTECIMENTO</Text>
-          <RadioGroup options={optionsModAB} />
+          <RadioGroup options={optionsModAB} {...register('ModAbast')} />
+          <input {...register('xxt')}></input>
         </ItemFormConteiner>
         <ItemFormConteiner>
           <Text>FORMAÇÃO DE CARROS</Text>
-          <RadioGroup options={optionsFormCar} />
+          <RadioGroup options={optionsFormCar} {...register('FormCar')} />
         </ItemFormConteiner>
         <ItemFormConteiner>
           <Text>LOAD MÉDIO</Text>
-          <InputIncremental />
+          <InputIncremental {...register('LoadMed')} />
         </ItemFormConteiner>
       </LineFormConteiner>
       <LineFormConteiner>
         <ItemFormConteiner>
           <Text>TIPO DE MÉDIA DOH</Text>
-          <RadioGroup options={optionsTpMed} />
+          <RadioGroup options={optionsTpMed} {...register('TpMdDoh')} />
         </ItemFormConteiner>
       </LineFormConteiner>
       <LineFormConteiner>
         <ItemFormConteiner>
           <Text>LEAD TIME WHP</Text>
-          <InputIncremental />
+          <InputIncremental {...register('LeadTimeWp')} />
         </ItemFormConteiner>
         <ItemFormConteiner>
           <Text>DIVISÃO DE ORDENS EM PACOTES DE</Text>
-          <InputIncremental />
+          <InputIncremental {...register('DivOrdPac')} />
         </ItemFormConteiner>
       </LineFormConteiner>
       <LineFormConteiner>
         <ItemFormConteiner>
           <Text>MÍNIMO DE SOBRAS P/ INFORMAR PIVO</Text>
-          <InputIncremental />
+          <InputIncremental {...register('SobraMin')} />
         </ItemFormConteiner>
         <ItemFormConteiner>
           <Text>DIAS PARA POSTERGAR</Text>
-          <InputIncremental />
+          <InputIncremental {...register('PostDias')} />
         </ItemFormConteiner>
       </LineFormConteiner>
       <LineFormConteiner>
         <ItemFormConteiner>
           <Text>CLIENTE AGRUPADOR</Text>
-          <MultiSelect options={options} onChange={setSelectedOptions} />
+          <MultiSelect options={options} {...register('ClientAgrup')} />
           <CheckBox>Reservas consideradas Full</CheckBox>
         </ItemFormConteiner>
       </LineFormConteiner>

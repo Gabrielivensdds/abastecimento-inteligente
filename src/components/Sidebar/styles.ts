@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom'
 export const ContainerSidebar = styled('div', {
   display: 'flex',
   flexDirection: 'column',
+  zIndex: '999',
   gap: '30px',
   height: '100vh',
   backgroundColor: '$blue500',
@@ -121,12 +122,10 @@ export const StyledNavLink = styled(NavLink, {
   '&:hover': {
     backgroundColor: '$blue100',
     color: '$blue50',
-    borderRight: '5px solid $blue50',
   },
   '&.active': {
     backgroundColor: '$blue100',
     color: '$blue50',
-    borderRadius: '4px',
   },
   variants: {
     collapsed: {
@@ -139,6 +138,9 @@ export const StyledNavLink = styled(NavLink, {
       },
       false: {
         padding: '10px 0 10px 24px',
+        '&.active': {
+          borderRight: '5px solid $blue50',
+        },
       },
     },
   },

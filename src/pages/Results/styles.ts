@@ -1,6 +1,6 @@
 import { styled } from '../../styles'
 
-export const StyledForm = styled('form', {
+export const Container = styled('div', {
   display: 'flex',
   justifyContent: 'start',
   alignItems: 'start',
@@ -21,10 +21,20 @@ export const LineFormConteiner = styled('div', {
   width: '100%',
   justifyContent: 'space-between',
   marginTop: '50px',
+  gap: '4.325rem',
 })
 
 export const TitleFormConteiner = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '24px',
+})
+
+export const GripConteiner = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  width: '100%',
+  justifyContent: 'space-between',
+  marginTop: '50px',
+  gap: '4.325rem',
 })
