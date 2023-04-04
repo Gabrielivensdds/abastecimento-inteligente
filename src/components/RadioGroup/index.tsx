@@ -13,12 +13,16 @@ interface Option {
 
 interface RadioGroupProps {
   options: Option[]
-  onChange: (selectedOptions: string) => string
+  onChange: (selectedOptions: string) => void
 }
 
-export function RadioGroup({ options }: RadioGroupProps) {
+export function RadioGroup({ options, onChange }: RadioGroupProps) {
   return (
-    <RadioGroupRoot aria-label="View density" defaultValue={options[0].value}>
+    <RadioGroupRoot
+      aria-label="View density"
+      defaultValue={options[0].value}
+      onValueChange={onChange}
+    >
       {options.map((option) => (
         <Flex key={option.value}>
           <RadioGroupItem value={option.value} id={option.value}>

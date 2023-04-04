@@ -1,7 +1,11 @@
 import { useState } from 'react'
 import { Container, DecrementButton, IncrementButton, Input } from './styles'
 
-export function InputIncremental() {
+interface InputIncrementalProps {
+  onValueChange: (value: string) => void
+}
+
+export function InputIncremental({ onValueChange }: InputIncrementalProps) {
   const [value, setValue] = useState(0)
 
   const handleIncrement = () => {
@@ -13,6 +17,10 @@ export function InputIncremental() {
       setValue(value - 1)
     }
   }
+  function handleSetValue(value: string) {
+    setValue(Number(value))
+    onValueChange(value)
+  }
 
   return (
     <Container>
@@ -20,7 +28,7 @@ export function InputIncremental() {
       <Input
         type="number"
         value={value}
-        onChange={(e) => setValue(Number(e.target.value))}
+        onChange={(e) => handleSetValue(e.target.value)}
       />
       <IncrementButton type="button" onClick={handleIncrement} />
     </Container>

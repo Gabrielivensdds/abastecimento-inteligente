@@ -1,4 +1,3 @@
-import { FormEvent, useState } from 'react'
 import { useForm, Controller } from 'react-hook-form'
 import { MultiSelect } from '../../components/MultiSelect'
 import { RadioGroup } from '../../components/RadioGroup'
@@ -16,56 +15,44 @@ import {
   TitleFormConteiner,
 } from './styles'
 
-export function FormPage() {
-  const [selectedOptions, setSelectedOptions] = useState<(typeof Option)[]>([])
+const options = [
+  { value: '1054', label: '1054' },
+  { value: '1896', label: '1896' },
+  { value: '0159', label: '0159' },
+  { value: '9876', label: '9876' },
+  { value: '5347', label: '5347' },
+]
 
+const optionsModAB = [
+  { value: 'pace', label: 'Pace' },
+  { value: 'vagas', label: 'Vagas' },
+]
+
+const optionsFormCar = [
+  { value: 'CalcVol', label: 'Cálculo por Volume' },
+  { value: 'LoadMed', label: 'Load médio de peças' },
+]
+
+const optionsTpMed = [
+  { value: 'movel', label: 'Móvel' },
+  { value: 'fixo', label: 'Fixo' },
+]
+
+export function FormPage() {
   const handleCreateSimulation = (data: any) => {
     console.log(data)
-    event.preventDefault()
-    console.log('Opcoes selecionadas:', selectedOptions)
   }
 
-  const { register, handleSubmit, control } = useForm()
+  const { register, handleSubmit, control } = useForm({
+    defaultValues: {
+      RGModAbast: optionsModAB[0].value,
+      RGFormCar: optionsFormCar[0].value,
+      RGLoadMed: '0',
+    },
+  })
 
-  const options = [
-    { value: '1054', label: '1054' },
-    { value: '1896', label: '1896' },
-    { value: '0159', label: '0159' },
-    { value: '9876', label: '9876' },
-    { value: '5347', label: '5347' },
-  ]
-
-  const optionsModAB = [
-    { value: 'pace', label: 'Pace' },
-    { value: 'vagas', label: 'Vagas' },
-  ]
-
-  const optionsFormCar = [
-    { value: 'CalcVol', label: 'Cálculo por Volume' },
-    { value: 'LoadMed', label: 'Load médio de peças' },
-  ]
-
-  const optionsTpMed = [
-    { value: 'movel', label: 'Móvel' },
-    { value: 'fixo', label: 'Fixo' },
-  ]
-
-  function handleChange(value: string) {
-    return value
-  }
   return (
     <StyledForm onSubmit={handleSubmit(handleCreateSimulation)}>
-      <Controller
-        name="xxxxxx"
-        control={control}
-        render={({ field }) => (
-          <RadioGroup
-            options={optionsModAB}
-            {...field}
-            onChange={handleChange}
-          />
-        )}
-      />
       <TitleFormConteiner>
         <Title>Parametrização e Simulação - ABI</Title>
         <SubTitle>
@@ -76,16 +63,34 @@ export function FormPage() {
       <LineFormConteiner>
         <ItemFormConteiner>
           <Text>MODO DE ABASTECIMENTO</Text>
-          <RadioGroup options={optionsModAB} {...register('ModAbast')} />
-          <input {...register('xxt')}></input>
+          <Controller
+            name="RGModAbast"
+            control={control}
+            render={({ field }) => (
+              <RadioGroup options={optionsModAB} onChange={field.onChange} />
+            )}
+          />
         </ItemFormConteiner>
         <ItemFormConteiner>
           <Text>FORMAÇÃO DE CARROS</Text>
-          <RadioGroup options={optionsFormCar} {...register('FormCar')} />
+
+          <Controller
+            name="RGFormCar"
+            control={control}
+            render={({ field }) => (
+              <RadioGroup options={optionsFormCar} onChange={field.onChange} />
+            )}
+          />
         </ItemFormConteiner>
         <ItemFormConteiner>
           <Text>LOAD MÉDIO</Text>
-          <InputIncremental {...register('LoadMed')} />
+          <Controller
+            name="RGLoadMed"
+            control={control}
+            render={({ field }) => (
+              <InputIncremental onValueChange={field.onChange} />
+            )}
+          />
         </ItemFormConteiner>
       </LineFormConteiner>
       <LineFormConteiner>
