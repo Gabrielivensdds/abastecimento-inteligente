@@ -42,31 +42,33 @@ const optionsTpMed = [
   { value: 'fixo', label: 'Fixo' },
 ]
 
+const ParamESimFormValidationSchema = zod.object({
+  RGModAbast: zod.string(),
+  RGFormCar: zod.string(),
+  RGLoadMed: zod.string().min(1).max(3),
+  RGTpMdDoh: zod.string(),
+  LeadTimeWp: zod.string().min(1).max(3),
+  DivOrdPac: zod.string().min(1).max(3),
+  SobraMin: zod.string().min(1).max(3),
+  PostDias: zod.string().min(1).max(3),
+  ClientAgrup: zod
+    .array(
+      zod.object({
+        value: zod.string(),
+        label: zod.string(),
+      }),
+    )
+    .min(1, 'Selecione um cliente Agrupador'),
+  CheckBox: zod.boolean(),
+})
+type CreateSimulationData = zod.infer<typeof ParamESimFormValidationSchema>
+
 export function FormPage() {
-  const handleCreateSimulation = (data: any) => {
+  const handleCreateSimulation = (data: CreateSimulationData) => {
     console.log(data)
   }
 
-  const ParamESimFormValidationSchema = zod.object({
-    RGModAbast: zod.string(),
-    RGFormCar: zod.string(),
-    RGLoadMed: zod.string().min(1).max(3),
-    RGTpMdDoh: zod.string(),
-    LeadTimeWp: zod.string().min(1).max(3),
-    DivOrdPac: zod.string().min(1).max(3),
-    SobraMin: zod.string().min(1).max(3),
-    PostDias: zod.string().min(1).max(3),
-    ClientAgrup: zod
-      .array(
-        zod.object({
-          value: zod.string(),
-          label: zod.string(),
-        }),
-      )
-      .min(1, 'Selecione um cliente Agrupador'),
-    CheckBox: zod.boolean(),
-  })
-  const { handleSubmit, control, formState } = useForm({
+  const { handleSubmit, control, formState } = useForm<CreateSimulationData>({
     defaultValues: {
       RGModAbast: optionsModAB[0].value,
       RGFormCar: optionsFormCar[0].value,
