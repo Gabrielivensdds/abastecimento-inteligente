@@ -17,7 +17,7 @@ const iconStatus = {
 }
 type IconStatus = keyof typeof iconStatus
 
-interface PipelineStatus {
+export interface PipelineStatus {
   id: number
   pipelineId: string
   status: IconStatus

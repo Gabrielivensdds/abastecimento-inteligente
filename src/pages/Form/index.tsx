@@ -18,6 +18,7 @@ import {
   StyledForm,
   TitleFormConteiner,
 } from './styles'
+import { useState } from 'react'
 
 const options = [
   { value: '1054', label: '1054' },
@@ -45,7 +46,7 @@ const optionsTpMed = [
 const ParamESimFormValidationSchema = zod.object({
   RGModAbast: zod.string(),
   RGFormCar: zod.string(),
-  RGLoadMed: zod.string().min(1).max(3),
+  LoadMed: zod.string().min(1).max(3),
   RGTpMdDoh: zod.string(),
   LeadTimeWp: zod.string().min(1).max(3),
   DivOrdPac: zod.string().min(1).max(3),
@@ -72,7 +73,7 @@ export function FormPage() {
     defaultValues: {
       RGModAbast: optionsModAB[0].value,
       RGFormCar: optionsFormCar[0].value,
-      RGLoadMed: '0',
+      LoadMed: '0',
       RGTpMdDoh: optionsTpMed[0].value,
       LeadTimeWp: '0',
       DivOrdPac: '0',
@@ -85,6 +86,28 @@ export function FormPage() {
   })
   console.log(formState.errors)
 
+  const [showCarForm, setShowCarForm] = useState(false)
+  const [showLoadMed, setLoadMed] = useState(false)
+
+  const handleModAbastChange = (selectedOption: string) => {
+    if (selectedOption === 'vagas') {
+      setShowCarForm(true)
+    } else {
+      setShowCarForm(false)
+      setLoadMed(false)
+    }
+    console.log(selectedOption)
+  }
+
+  const handleCarFormChange = (selectedOption: string) => {
+    if (selectedOption === 'LoadMed') {
+      setLoadMed(true)
+    } else {
+      setLoadMed(false)
+    }
+    console.log(selectedOption)
+  }
+
   return (
     <StyledForm onSubmit={handleSubmit(handleCreateSimulation)}>
       <TitleFormConteiner>
@@ -94,38 +117,53 @@ export function FormPage() {
           para o cálculo do robô.
         </SubTitle>
       </TitleFormConteiner>
-      <LineFormConteiner>
+      <LineFormConteiner css={{ gap: '100px', justifyContent: 'normal' }}>
         <ItemFormConteiner>
           <Text>MODO DE ABASTECIMENTO</Text>
           <Controller
             name="RGModAbast"
             control={control}
             render={({ field }) => (
-              <RadioGroup options={optionsModAB} onChange={field.onChange} />
+              <RadioGroup
+                options={optionsModAB}
+                onChange={(option) => {
+                  field.onChange(option)
+                  handleModAbastChange(option.valueOf())
+                }}
+              />
             )}
           />
         </ItemFormConteiner>
-        <ItemFormConteiner>
-          <Text>FORMAÇÃO DE CARROS</Text>
-
-          <Controller
-            name="RGFormCar"
-            control={control}
-            render={({ field }) => (
-              <RadioGroup options={optionsFormCar} onChange={field.onChange} />
-            )}
-          />
-        </ItemFormConteiner>
-        <ItemFormConteiner>
-          <Text>LOAD MÉDIO</Text>
-          <Controller
-            name="RGLoadMed"
-            control={control}
-            render={({ field }) => (
-              <InputIncremental onValueChange={field.onChange} />
-            )}
-          />
-        </ItemFormConteiner>
+        {showCarForm && (
+          <ItemFormConteiner>
+            <Text>FORMAÇÃO DE CARROS</Text>
+            <Controller
+              name="RGFormCar"
+              control={control}
+              render={({ field }) => (
+                <RadioGroup
+                  options={optionsFormCar}
+                  onChange={(option) => {
+                    field.onChange(option)
+                    handleCarFormChange(option.valueOf())
+                  }}
+                />
+              )}
+            />
+          </ItemFormConteiner>
+        )}
+        {showLoadMed && (
+          <ItemFormConteiner>
+            <Text>LOAD MÉDIO</Text>
+            <Controller
+              name="LoadMed"
+              control={control}
+              render={({ field }) => (
+                <InputIncremental onValueChange={field.onChange} />
+              )}
+            />
+          </ItemFormConteiner>
+        )}
       </LineFormConteiner>
       <LineFormConteiner>
         <ItemFormConteiner>

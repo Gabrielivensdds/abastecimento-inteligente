@@ -8,10 +8,10 @@ import {
   GripConteiner,
 } from './styles'
 import { Title } from '../../components/Title'
-import CardStatusList from '../../components/CardStatus'
+import CardStatusList, { PipelineStatus } from '../../components/CardStatus'
 
 export function Results() {
-  const pipelineStatusData = [
+  const pipelineStatusData: PipelineStatus[] = [
     { id: 1, pipelineId: 'P001', status: 'success' },
     { id: 2, pipelineId: 'P002', status: 'error' },
     { id: 3, pipelineId: 'P003', status: 'warning' },

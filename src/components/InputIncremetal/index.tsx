@@ -10,11 +10,13 @@ export function InputIncremental({ onValueChange }: InputIncrementalProps) {
 
   const handleIncrement = () => {
     setValue(value + 1)
+    onValueChange(String(value + 1))
   }
 
   const handleDecrement = () => {
     if (value > 0) {
       setValue(value - 1)
+      onValueChange(String(value - 1))
     }
   }
   function handleSetValue(value: string) {
