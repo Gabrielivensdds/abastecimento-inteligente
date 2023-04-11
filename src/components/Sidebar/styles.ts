@@ -119,6 +119,7 @@ export const StyledNavLink = styled(NavLink, {
   gap: '12px',
   color: '$gray300',
   cursor: 'pointer',
+  textDecoration: 'none',
   '&:hover': {
     backgroundColor: '$blue100',
     color: '$blue50',
