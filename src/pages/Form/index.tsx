@@ -29,29 +29,29 @@ const options = [
 ]
 
 const optionsModAB = [
-  { value: 'pace', label: 'Pace' },
-  { value: 'vagas', label: 'Vagas' },
+  { value: false, label: 'Pace' },
+  { value: true, label: 'Vagas' },
 ]
 
 const optionsFormCar = [
-  { value: 'CalcVol', label: 'Cálculo por Volume' },
-  { value: 'LoadMed', label: 'Load médio de peças' },
+  { value: false, label: 'Cálculo por Volume' },
+  { value: true, label: 'Load médio de peças' },
 ]
 
 const optionsTpMed = [
-  { value: 'movel', label: 'Móvel' },
-  { value: 'fixo', label: 'Fixo' },
+  { value: false, label: 'Móvel' },
+  { value: true, label: 'Fixo' },
 ]
 
 const ParamESimFormValidationSchema = zod.object({
-  RGModAbast: zod.string(),
-  RGFormCar: zod.string(),
-  LoadMed: zod.string().min(1).max(3),
-  RGTpMdDoh: zod.string(),
-  LeadTimeWp: zod.string().min(1).max(3),
-  DivOrdPac: zod.string().min(1).max(3),
-  SobraMin: zod.string().min(1).max(3),
-  PostDias: zod.string().min(1).max(3),
+  RGModAbast: zod.boolean(),
+  RGFormCar: zod.boolean(),
+  LoadMed: zod.number().min(1, 'O Load Médio precisa de um valor mínimo.'),
+  RGTpMdDoh: zod.boolean(),
+  LeadTimeWp: zod.number(),
+  DivOrdPac: zod.number(),
+  SobraMin: zod.number(),
+  PostDias: zod.number(),
   ClientAgrup: zod
     .array(
       zod.object({
@@ -73,12 +73,12 @@ export function FormPage() {
     defaultValues: {
       RGModAbast: optionsModAB[0].value,
       RGFormCar: optionsFormCar[0].value,
-      LoadMed: '0',
+      LoadMed: 0,
       RGTpMdDoh: optionsTpMed[0].value,
-      LeadTimeWp: '0',
-      DivOrdPac: '0',
-      SobraMin: '0',
-      PostDias: '0',
+      LeadTimeWp: 0,
+      DivOrdPac: 0,
+      SobraMin: 0,
+      PostDias: 0,
       ClientAgrup: [],
       CheckBox: false,
     },
@@ -89,8 +89,8 @@ export function FormPage() {
   const [showCarForm, setShowCarForm] = useState(false)
   const [showLoadMed, setLoadMed] = useState(false)
 
-  const handleModAbastChange = (selectedOption: string) => {
-    if (selectedOption === 'vagas') {
+  const handleModAbastChange = (selectedOption: boolean) => {
+    if (selectedOption === true) {
       setShowCarForm(true)
     } else {
       setShowCarForm(false)
@@ -99,8 +99,8 @@ export function FormPage() {
     console.log(selectedOption)
   }
 
-  const handleCarFormChange = (selectedOption: string) => {
-    if (selectedOption === 'LoadMed') {
+  const handleCarFormChange = (selectedOption: boolean) => {
+    if (selectedOption === true) {
       setLoadMed(true)
     } else {
       setLoadMed(false)

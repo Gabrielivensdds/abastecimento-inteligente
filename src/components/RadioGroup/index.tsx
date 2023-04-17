@@ -7,28 +7,35 @@ import {
 } from './styles'
 
 interface Option {
-  value: string
+  value: boolean
   label: string
 }
 
 interface RadioGroupProps {
   options: Option[]
-  onChange: (selectedOptions: string) => void
+  onChange: (selectedOptions: boolean) => void
 }
 
 export function RadioGroup({ options, onChange }: RadioGroupProps) {
+  const handleValueChange = (value: string | boolean) => {
+    if (typeof value === 'string') {
+      onChange(value === 'true')
+    } else {
+      onChange(value)
+    }
+  }
   return (
     <RadioGroupRoot
       aria-label="View density"
-      defaultValue={options[0].value}
-      onValueChange={onChange}
+      defaultValue={options[0].value.toString()}
+      onValueChange={handleValueChange}
     >
       {options.map((option) => (
-        <Flex key={option.value}>
-          <RadioGroupItem value={option.value} id={option.value}>
+        <Flex key={option.label}>
+          <RadioGroupItem value={option.value.toString()} id={option.label}>
             <RadioGroupIndicator />
           </RadioGroupItem>
-          <Label htmlFor={option.value}>{option.label}</Label>
+          <Label htmlFor={option.label}>{option.label}</Label>
         </Flex>
       ))}
     </RadioGroupRoot>
