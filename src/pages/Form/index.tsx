@@ -8,10 +8,11 @@ import { Text } from '../../components/Text'
 import { Title } from '../../components/Title'
 import { InputIncremental } from '../../components/InputIncremetal'
 import { Button } from '../../components/Button'
-import { PlayCircle } from '@phosphor-icons/react'
+import { PlayCircle, Warning } from '@phosphor-icons/react'
 import { CheckBox } from '../../components/Checkbox'
 
 import {
+  ErrorMessage,
   ItemFormConteiner,
   Label,
   LineFormConteiner,
@@ -46,7 +47,7 @@ const optionsTpMed = [
 const ParamESimFormValidationSchema = zod.object({
   RGModAbast: zod.boolean(),
   RGFormCar: zod.boolean(),
-  LoadMed: zod.number().min(1, 'O Load Médio precisa de um valor mínimo.'),
+  LoadMed: zod.number(),
   RGTpMdDoh: zod.boolean(),
   LeadTimeWp: zod.number(),
   DivOrdPac: zod.number(),
@@ -59,7 +60,7 @@ const ParamESimFormValidationSchema = zod.object({
         label: zod.string(),
       }),
     )
-    .min(1, 'Selecione um cliente Agrupador'),
+    .min(1, 'Selecione um Cliente Agrupador'),
   CheckBox: zod.boolean(),
 })
 type CreateSimulationData = zod.infer<typeof ParamESimFormValidationSchema>
@@ -231,6 +232,12 @@ export function FormPage() {
               <MultiSelect options={options} onChange={field.onChange} />
             )}
           />
+          {formState.errors.ClientAgrup && (
+            <ErrorMessage>
+              <Warning size={16} weight="fill" color="#FF5252" />
+              <span>{formState.errors.ClientAgrup.message?.toString()}</span>
+            </ErrorMessage>
+          )}
         </ItemFormConteiner>
       </LineFormConteiner>
       <LineFormConteiner>

@@ -41,3 +41,13 @@ export const Label = styled('label', {
   fontSize: 14,
   paddingLeft: 15,
 })
+
+export const ErrorMessage = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  border: 'solid',
+  borderColor: '$gray500',
+  borderWidth: '1px',
+  color: '$gray500',
+  backgroundColor: '$yellow600',
+})
