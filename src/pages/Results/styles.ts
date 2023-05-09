@@ -8,6 +8,7 @@ export const Container = styled('div', {
   gap: '1rem',
   maxWidth: '1190px',
   margin: '0 auto',
+  paddingLeft: '100px',
 })
 
 export const ItemFormConteiner = styled('div', {
@@ -30,9 +31,9 @@ export const TitleFormConteiner = styled('div', {
   gap: '24px',
 })
 
-export const GripConteiner = styled('div', {
-  display: 'grid',
-  gridTemplateColumns: '1fr 1fr',
+export const GridConteiner = styled('div', {
+  display: 'flex',
+  flexWrap: 'wrap',
   width: '100%',
   justifyContent: 'space-between',
   marginTop: '50px',

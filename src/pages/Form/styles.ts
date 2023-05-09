@@ -12,12 +12,22 @@ export const StyledForm = styled('form', {
   gap: '1rem',
   maxWidth: '1190px',
   margin: '0 auto',
+  paddingLeft: '100px',
 })
 
 export const ItemFormConteiner = styled('div', {
   display: 'flex',
   flexDirection: 'column',
   gap: '14px',
+  width: '100%',
+})
+
+export const AlignCenterFormConteiner = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  gap: '14px',
+  width: '100%',
 })
 
 export const LineFormConteiner = styled('div', {
@@ -45,9 +55,13 @@ export const Label = styled('label', {
 export const ErrorMessage = styled('div', {
   display: 'flex',
   alignItems: 'center',
-  border: 'solid',
-  borderColor: '$gray500',
-  borderWidth: '1px',
-  color: '$gray500',
-  backgroundColor: '$yellow600',
+  justifyContent: 'center',
+  borderRadius: '5px',
+  border: '2px solid $red500',
+  color: '$gray900',
+  backgroundColor: '$gray100',
+  fontWeight: 'bold',
+  fontSize: '1rem',
+  padding: '0.75rem 1.25rem',
+  boxShadow: '5px 5px 10px rgba(0,0,0,0.3)',
 })

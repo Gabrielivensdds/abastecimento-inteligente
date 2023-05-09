@@ -16,6 +16,7 @@ export const {
       yellow600: '#C39D43',
       blue50: '#5CC8FF',
       blue100: '#21425F',
+      blue200: '#00A0DD',
       blue500: '#122137',
       gray100: '#9D9D9D',
       gray300: '#9F9999',

@@ -12,6 +12,7 @@ import { PlayCircle, Warning } from '@phosphor-icons/react'
 import { CheckBox } from '../../components/Checkbox'
 
 import {
+  AlignCenterFormConteiner,
   ErrorMessage,
   ItemFormConteiner,
   Label,
@@ -179,7 +180,7 @@ export function FormPage() {
         </ItemFormConteiner>
       </LineFormConteiner>
       <LineFormConteiner>
-        <ItemFormConteiner>
+        <AlignCenterFormConteiner>
           <Text>LEAD TIME WHP</Text>
           <Controller
             name="LeadTimeWp"
@@ -188,8 +189,8 @@ export function FormPage() {
               <InputIncremental onValueChange={field.onChange} />
             )}
           />
-        </ItemFormConteiner>
-        <ItemFormConteiner>
+        </AlignCenterFormConteiner>
+        <AlignCenterFormConteiner>
           <Text>DIVISÃO DE ORDENS EM PACOTES DE</Text>
           <Controller
             name="DivOrdPac"
@@ -198,10 +199,10 @@ export function FormPage() {
               <InputIncremental onValueChange={field.onChange} />
             )}
           />
-        </ItemFormConteiner>
+        </AlignCenterFormConteiner>
       </LineFormConteiner>
       <LineFormConteiner>
-        <ItemFormConteiner>
+        <AlignCenterFormConteiner>
           <Text>MÍNIMO DE SOBRAS P/ INFORMAR PIVO</Text>
           <Controller
             name="SobraMin"
@@ -210,8 +211,8 @@ export function FormPage() {
               <InputIncremental onValueChange={field.onChange} />
             )}
           />
-        </ItemFormConteiner>
-        <ItemFormConteiner>
+        </AlignCenterFormConteiner>
+        <AlignCenterFormConteiner>
           <Text>DIAS PARA POSTERGAR</Text>
           <Controller
             name="PostDias"
@@ -220,7 +221,7 @@ export function FormPage() {
               <InputIncremental onValueChange={field.onChange} />
             )}
           />
-        </ItemFormConteiner>
+        </AlignCenterFormConteiner>
       </LineFormConteiner>
       <LineFormConteiner>
         <ItemFormConteiner>
@@ -234,7 +235,7 @@ export function FormPage() {
           />
           {formState.errors.ClientAgrup && (
             <ErrorMessage>
-              <Warning size={16} weight="fill" color="#FF5252" />
+              <Warning size={16} weight="fill" color="#FF1A1A" />
               <span>{formState.errors.ClientAgrup.message?.toString()}</span>
             </ErrorMessage>
           )}
@@ -249,7 +250,9 @@ export function FormPage() {
               <CheckBox id="d1" onValueChange={field.onChange} />
             )}
           />
-          <Label htmlFor="d1">Reservas Consideradas Full</Label>
+          <Label htmlFor="d1">
+            Desejo usar necessidade informada pelo cliente
+          </Label>
         </ItemFormConteiner>
       </LineFormConteiner>
       <Button css={{ alignSelf: 'end' }}>

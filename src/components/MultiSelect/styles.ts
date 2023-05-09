@@ -13,8 +13,7 @@ export const colorStyles: StylesConfig<ColourOption, true> = {
     backgroundColor: 'white',
     borderRadius: '4px',
     height: '2.875rem',
-    width: '56.25rem',
-    margin: '0.875rem',
+    width: '100%',
   }),
   multiValue: (styles) => {
     return {

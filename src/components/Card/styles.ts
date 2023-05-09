@@ -3,6 +3,7 @@ import { styled } from '../../styles'
 export const CardWrapper = styled('div', {
   display: 'flex',
   flexDirection: 'column',
+  backgroundColor: '$white',
   alignItems: 'center',
   borderRadius: '8px',
   padding: '0px',

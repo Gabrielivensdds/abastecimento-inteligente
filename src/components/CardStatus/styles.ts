@@ -4,30 +4,29 @@ import { StylesConfig } from 'react-select'
 export const CardWrapper = styled('div', {
   display: 'flex',
   flexDirection: 'column',
+  backgroundColor: '$white',
   alignItems: 'center',
   borderRadius: '8px',
   padding: '14px',
   boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.2)',
   width: '29.25rem',
   boxSizing: 'border-box',
-  variants: {
-    expanded: {
-      true: {
-        height: '12rem',
-      },
-      false: {
-        height: '10.625rem',
-      },
-    },
-  },
+  height: 'fit-content',
+  gap: '20px',
 })
 
 export const CardAlignContainer = styled('div', {
   display: 'flex',
   width: '100%',
   justifyContent: 'space-between',
-  marginTop: '50px',
   gap: '4.325rem',
+})
+
+export const CardLineConteiner = styled('div', {
+  display: 'flex',
+
+  flexDirection: 'column',
+  gap: '14px',
 })
 
 export const Status = styled('h3', {
@@ -74,6 +73,11 @@ export const colorStyles: StylesConfig<Option> = {
     borderRadius: '4px',
     height: '2.875rem',
     width: '27.5rem',
-    margin: '0.875rem',
   }),
 }
+
+export const CardItemConteiner = styled('div', {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '14px',
+})

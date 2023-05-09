@@ -8,6 +8,7 @@ export const StyledFlex = styled('div', {
   gap: '1rem',
   maxWidth: '1190px',
   margin: '0 auto',
+  paddingLeft: '100px',
 })
 
 export const ItemFormConteiner = styled('div', {
